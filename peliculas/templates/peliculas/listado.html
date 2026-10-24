@@ -1,0 +1,11 @@
+{% extends 'peliculas/base.html' %}
+{% block titulo %}{{ titulo_pagina }}{% endblock %}
+{% block contenido %}
+<section class="titulo-seccion"><p class="etiqueta">CATÁLOGO</p><h1>{{ titulo_pagina }}</h1><p>Consulta los registros y agrega contenido desde la API del proyecto.</p></section>
+<div class="barra"><label for="buscar">Buscar por título</label><input id="buscar" type="search" placeholder="Escribe un título..." autocomplete="off"><a class="boton secundario" href="/api/{{ tipo }}/" target="_blank" rel="noopener">Abrir API</a></div>
+<div class="cuadricula" id="resultados">
+{% for item in elementos %}
+<article class="tarjeta buscable" data-titulo="{{ item.titulo|lower }}"><span class="categoria">{% if tipo == 'peliculas' %}PELÍCULA{% else %}SERIE{% endif %}</span><h2>{{ item.titulo }}</h2><p>{{ item.genero|default:'Sin género' }}</p><span class="anio">{% if tipo == 'peliculas' %}{{ item.anio|default:'' }}{% else %}{{ item.anio_inicio|default:'' }}{% endif %}</span></article>
+{% empty %}<p class="vacio">No hay registros todavía.</p>{% endfor %}
+</div><p id="sin-resultados" class="vacio" hidden>No se encontraron resultados.</p>
+{% endblock %}

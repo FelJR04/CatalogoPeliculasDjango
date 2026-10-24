@@ -1,0 +1,28 @@
+{% load static %}
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Gestor personal de películas y series">
+  <title>{% block titulo %}Mi catálogo{% endblock %} | Mi catálogo</title>
+  <link rel="stylesheet" href="{% static 'peliculas/estilos.css' %}">
+  <script src="{% static 'peliculas/app.js' %}" defer></script>
+</head>
+<body>
+  <header class="cabecera">
+    <a class="marca" href="{% url 'inicio' %}">Mi catálogo<span>.</span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu" aria-label="Abrir menú">☰</button>
+    <nav id="menu" class="menu" aria-label="Navegación principal">
+      <a href="{% url 'inicio' %}">Inicio</a>
+      <a href="{% url 'pagina_peliculas' %}">Películas</a>
+      <a href="{% url 'pagina_series' %}">Series</a>
+      <a href="{% url 'pagina_colecciones' %}">Colecciones</a>
+      <a href="/api/" target="_blank" rel="noopener">API REST</a>
+      <a href="/admin/" target="_blank" rel="noopener">Administración</a>
+    </nav>
+  </header>
+  <main class="contenedor">{% block contenido %}{% endblock %}</main>
+  <footer class="pie">Gestor Personal de Películas y Series · Avance 6.2</footer>
+</body>
+</html>

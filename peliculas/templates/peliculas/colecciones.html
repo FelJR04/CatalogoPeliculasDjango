@@ -1,0 +1,7 @@
+{% extends 'peliculas/base.html' %}
+{% block titulo %}Colecciones{% endblock %}
+{% block contenido %}
+<section class="titulo-seccion"><p class="etiqueta">ORGANIZACIÓN</p><h1>Colecciones</h1><p>Grupos personales para organizar películas y series.</p></section>
+<div class="barra"><label for="buscar">Buscar colección</label><input id="buscar" type="search" placeholder="Nombre de la colección..." autocomplete="off"><a class="boton secundario" href="/api/colecciones/" target="_blank" rel="noopener">Abrir API</a></div>
+<div class="cuadricula" id="resultados">{% for item in elementos %}<article class="tarjeta buscable" data-titulo="{{ item.nombre|lower }}"><span class="categoria">COLECCIÓN</span><h2>{{ item.nombre }}</h2><p>{% if item.activo %}Activa{% else %}Inactiva{% endif %}</p></article>{% empty %}<p class="vacio">No hay colecciones todavía.</p>{% endfor %}</div><p id="sin-resultados" class="vacio" hidden>No se encontraron resultados.</p>
+{% endblock %}

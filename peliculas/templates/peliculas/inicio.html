@@ -1,0 +1,19 @@
+{% extends 'peliculas/base.html' %}
+{% block titulo %}Inicio{% endblock %}
+{% block contenido %}
+<section class="hero">
+  <p class="etiqueta">TU BIBLIOTECA PERSONAL</p>
+  <h1>Tus películas y series, en un solo lugar.</h1>
+  <p>Consulta tu catálogo y organiza lo que has visto o tienes pendiente.</p>
+  <div class="acciones"><a class="boton" href="{% url 'pagina_peliculas' %}">Ver películas</a><a class="boton secundario" href="{% url 'pagina_series' %}">Ver series</a></div>
+</section>
+<section class="resumen" aria-label="Resumen del catálogo">
+  <div class="estadistica"><strong>{{ total_peliculas }}</strong><span>Películas</span></div>
+  <div class="estadistica"><strong>{{ total_series }}</strong><span>Series</span></div>
+  <div class="estadistica"><strong>{{ total_colecciones }}</strong><span>Colecciones</span></div>
+</section>
+<section class="seccion"><div class="encabezado"><h2>Últimas películas</h2><a href="{% url 'pagina_peliculas' %}">Ver todas →</a></div>
+<div class="cuadricula">{% for item in ultimas_peliculas %}<article class="tarjeta"><span class="categoria">PELÍCULA</span><h3>{{ item.titulo }}</h3><p>{{ item.genero|default:'Sin género' }}</p><span class="anio">{{ item.anio|default:'' }}</span></article>{% empty %}<p class="vacio">Todavía no hay películas registradas.</p>{% endfor %}</div></section>
+<section class="seccion"><div class="encabezado"><h2>Últimas series</h2><a href="{% url 'pagina_series' %}">Ver todas →</a></div>
+<div class="cuadricula">{% for item in ultimas_series %}<article class="tarjeta"><span class="categoria">SERIE</span><h3>{{ item.titulo }}</h3><p>{{ item.genero|default:'Sin género' }}</p><span class="anio">{{ item.anio_inicio|default:'' }}</span></article>{% empty %}<p class="vacio">Todavía no hay series registradas.</p>{% endfor %}</div></section>
+{% endblock %}
