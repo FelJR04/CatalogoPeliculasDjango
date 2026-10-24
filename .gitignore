@@ -1,0 +1,23 @@
+# Entorno virtual
+venv/
+.venv/
+
+# Archivos temporales de Python
+__pycache__/
+*.pyc
+
+# Base de datos local
+db.sqlite3
+db.sqlite3-journal
+
+# Configuración privada
+.env
+.env.*
+!.env.example
+
+# Archivos del editor
+.vscode/
+.idea/
+
+# Archivos temporales
+*.log
